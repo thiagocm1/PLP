@@ -1,3 +1,4 @@
+
 avg:: Double -> Double -> String
 avg hits atBats |avg <= 0.200 = "Terrible Batting Average"
 				|avg <= 0.250 = "Average player"
