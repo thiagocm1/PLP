@@ -1,0 +1,3 @@
+double_digit(X,Y) :- Y is X*2.
+
+is_even(X):- X mod 2 is 0.
