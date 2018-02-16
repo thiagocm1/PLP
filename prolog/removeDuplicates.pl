@@ -1,4 +1,4 @@
-removeDuplicates(List,Result):- helper(List,[],Result).
+removeDuplicates(List	,Result):- helper(List,[],Result).
 
 helper([],Acc,Acc).
 
@@ -11,6 +11,7 @@ helper([H|T],Acc,Result) :- helper(T, [H|Acc], Result).
 main:-
 	read(List),
 	removeDuplicates(List,Result),
-	write(Result),
+	sort(Result,X),
+	write(X),
 	nl,
 	halt(10).

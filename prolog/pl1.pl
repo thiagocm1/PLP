@@ -1,11 +1,54 @@
-estacionamento(moto,5).
-estacionamento(carro,10).
-estacionamento(largo,30).
+sumElements([H|T],Result) :- sumHelper(T,H,Result).
 
-:- initialization main.
+sumHelper([],Acc,Acc).
+
+sumHelper([H|T],Acc,Result) :- 
+	NewAcc is Acc + H, 
+	sumHelper(T,NewAcc,Result).
+
+
+maxElement([R],R).
+
+maxElement([H|T],Result) :- 
+	maxElementHelper(T,H,Result).
+	
+maxElementHelper([],Acc,Acc).
+
+maxElementHelper([H|T],Acc,Result) :- 
+	H > Acc,
+	NewAcc is H,
+	maxElementHelper(T,NewAcc, Result).
+
+maxElementHelper([H|T], Acc, Result) :-
+	H =< Acc,
+	maxElementHelper(T,Acc,Result).
+ 
+
+minElement([H|T],Result) :-
+	minElementHelper(T,H,Result).
+
+minElementHelper([],Acc,Acc).
+
+minElementHelper([H|T],Acc,Result) :- 
+	H < Acc,
+	NewAcc is H,
+	minElementHelper(T,NewAcc,Result).
+
+minElementHelper([H|T],Acc,Result) :-
+	H >= Acc,
+	minElementHelper(T,Acc,Result).
+
+
+:- initialization(main).
 
 main :-
-	read_line_to_codes(user_input, A2),
-	string_to_atom(A2,A1),
-	estacionamento(A1, Y),
-	write(Y), nl.
+	read(List), 
+	nl,
+	sumElements(List,Result),
+	maxElement(List,Max),
+	minElement(List,Min),
+	Total is Result + (Max - Min),
+	write(Total),
+	nl,
+	halt(10).
+	
