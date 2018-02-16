@@ -1,0 +1,19 @@
+sumList([H|T], Result) :-
+	sumListHelper(List,H,Result).
+
+sumListHelper([],Acc,Acc).
+
+
+sumListHelper([H|T], Acc, Result) :- 
+	NewAcc is H + Acc,
+	sumListHelper(T,NewAcc, Result).
+
+
+:- initialization(main).
+
+main:-
+	read(List),
+	sumList(List,Result),
+	write(Result),
+	nl,
+	halt(10).

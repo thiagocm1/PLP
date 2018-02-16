@@ -1,0 +1,2 @@
+all_diff([]).
+all_diff([H|T]) :- (not member(H,T)), all_diff(T).

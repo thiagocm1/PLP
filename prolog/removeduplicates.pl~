@@ -1,0 +1,16 @@
+removeDuplicates(List,Result):- helper(List,[],Result).
+
+helper([],Acc,Acc).
+
+helper([H|T],Acc,Result) :- member(H,Acc), helper(T,Acc,Result).
+
+helper([H|T],Acc,Result) :- helper(T, [H|Acc], Result).
+    	
+:- initialization(main).
+
+main:-
+	read(List),
+	toSet(List,Result),
+	write(Result),
+	nl,
+	halt(0).

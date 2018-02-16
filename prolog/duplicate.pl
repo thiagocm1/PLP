@@ -1,0 +1,14 @@
+duplicate([],[]).
+duplicate([X|T],[X,X|T2]) :- duplicate([T,T2]).
+
+
+
+:- initialization(main).
+
+main:-
+	read(List),
+	duplicate(List,Result),
+	write(Result),
+	nl,
+	halt(10).
+

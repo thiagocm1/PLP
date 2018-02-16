@@ -1,12 +1,19 @@
-nota(N1,N2) :- ((N1 + N2)/2) >= 7.0, write(" pass = True ").
-nota(N1,N2) :- ((N1 + N2)/2) < 7.0, write("pass = False!").
+aviao(A, B) :- read_line_to_codes(user_input, X2),
+               string_to_atom(X2,X1),
+               atom_number(X1,X),
+               calculo(A, B, X).
 
-:- initialization (main).
-main:- 
-	read_line_to_codes(user_input, N12),
-	string_to_atom(N12,N1),
-	atom_number(N1,N),
-	read_line_to_codes(user_input,N22),
-	string_to_atom(N22,N21),
-	atom_number(N21,N2),
-	nota(N,N2).
+calculo(A, B, X) :- (B =:= A; X =:= A), write("OK").
+calculo(A, B, X) :- (abs(A - B) > abs(A - X)), write("ADEQUADO"),nl, aviao(A, X).
+calculo(A, B, X) :- write("PERIGO"),nl, aviao(A, X).
+
+:- initialization(main).
+
+main:-
+  read_line_to_codes(user_input, A2),
+  string_to_atom(A2,A1),
+  atom_number(A1,A),
+  read_line_to_codes(user_input, B2),
+  string_to_atom(B2,B1),
+  atom_number(B1,B),
+  aviao(A, B).
